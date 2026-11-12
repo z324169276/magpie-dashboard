@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Magpie 用量与成本</title>
+<link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">M</span>
+    <div>
+      <h1>Magpie 用量与成本</h1>
+      <p class="sub">数据来自本机网关 <span id="gateway">127.0.0.1:3425</span></p>
+    </div>
+  </div>
+  <div class="topbar-right">
+    <span id="status" class="status"><i class="dot"></i><span class="status-text">连接中…</span></span>
+    <span id="updated" class="updated"></span>
+    <button id="refresh" class="ghost" type="button">刷新</button>
+  </div>
+</header>
+
+<main>
+  <section class="toolbar">
+    <div class="tabs" id="periodTabs" role="tablist">
+      <button class="tab active" data-period="today" role="tab">今天</button>
+      <button class="tab" data-period="7d" role="tab">近 7 天</button>
+      <button class="tab" data-period="30d" role="tab">近 30 天</button>
+      <button class="tab" data-period="all" role="tab">全部</button>
+    </div>
+    <div class="toolbar-right">
+      <label class="switch">
+        <input type="checkbox" id="autoRefresh" checked />
+        <span>每 60 秒自动刷新</span>
+      </label>
+      <button id="export" class="ghost" type="button">导出 CSV</button>
+    </div>
+  </section>
+
+  <section class="banner" id="banner" hidden></section>
+
+  <section class="kpis" id="kpis"></section>
+
+  <section class="charts">
+    <article class="card chart-card">
+      <header>
+        <h2>费用趋势</h2>
+        <span class="hint" id="costHint"></span>
+      </header>
+      <div class="chart" id="costChart"></div>
+    </article>
+    <article class="card chart-card">
+      <header>
+        <h2>Token 趋势</h2>
+        <span class="hint">输入 / 输出 / 缓存读取</span>
+      </header>
+      <div class="chart" id="tokenChart"></div>
+    </article>
+  </section>
+
+  <section class="split">
+    <article class="card">
+      <header><h2>模型成本排名</h2><span class="hint" id="modelHint"></span></header>
+      <div id="modelRank" class="rank-list"></div>
+    </article>
+    <article class="card">
+      <header><h2>按 Agent</h2><span class="hint" id="agentHint"></span></header>
+      <div class="table-wrap" id="agentTable"></div>
+    </article>
+  </section>
+
+  <section class="split">
+    <article class="card">
+      <header><h2>按账号</h2><span class="hint" id="accountHint"></span></header>
+      <div class="table-wrap" id="accountTable"></div>
+    </article>
+    <article class="card">
+      <header><h2>额度</h2><span class="hint" id="quotaHint"></span></header>
+      <div id="quotaList" class="quota-list"></div>
+    </article>
+  </section>
+
+  <section class="card perf-card">
+    <header><h2>性能</h2></header>
+    <div id="perf" class="perf"></div>
+  </section>
+</main>
+
+<script src="/app.js"></script>
+</body>
+</html>
